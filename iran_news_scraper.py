@@ -28,17 +28,44 @@ class Scraper:
         except:
             return None
     
+    def get_article_text(self, url):
+        """استخراج متن کامل خبر از صفحه داخلی"""
+        soup = self.get_page(url)
+        if not soup:
+            return []
+        
+        # تلاش برای پیدا کردن بدنه اصلی خبر
+        # معمولاً کلاس‌هایی مثل article-body, story-content, post-content دارند
+        content_div = soup.find('div', class_=re.compile(r'article-body|story-content|post-content|entry-content', re.I))
+        
+        if not content_div:
+            # اگر پیدا نشد، کل div اصلی را بگیر
+            content_div = soup.find('article') or soup
+        
+        if not content_div:
+            return []
+        
+        paragraphs = []
+        for p in content_div.find_all('p'):
+            text = p.get_text(strip=True)
+            # پاراگراف‌های کوتاه (مثل کپشن عکس یا لینک) را حذف کن
+            if text and len(text) > 100:
+                paragraphs.append(text)
+        
+        return paragraphs[:10]  # حداکثر ۱۰ پاراگراف برای جلوگیری از حجم زیاد
+    
     def run(self):
         logger.info("Fetching homepage...")
         soup = self.get_page(self.BASE_URL)
         if not soup:
-            logger.error("Failed to fetch")
+            logger.error("Failed to fetch homepage")
             return []
         
         articles = []
         seen = set()
         
-        # استخراج لینک‌های خبر
+        # ۱. استخراج لینک‌های خبر از صفحه اصلی
+        raw_links = []
         for a in soup.find_all('a', href=True):
             href = a.get('href', '')
             if 'iranintl' not in href:
@@ -53,7 +80,7 @@ class Scraper:
             
             seen.add(url)
             
-            # استخراج عنوان
+            # استخراج عنوان و اطلاعات اولیه
             parent = a.parent
             title = ""
             for tag in ['h2', 'h3', 'h4']:
@@ -67,66 +94,81 @@ class Scraper:
             if not title:
                 continue
             
-            # استخراج عکس
             img = parent.find('img')
             image = img.get('src') or img.get('data-src') if img else None
             
-            # استخراج دسته‌بندی
             cat = parent.find(class_=re.compile(r'category|tag', re.I))
             tag = cat.get_text(strip=True) if cat else "عمومی"
             
+            raw_links.append({
+                "url": url,
+                "title": title,
+                "image": image,
+                "tag": tag
+            })
+            
+            if len(raw_links) >= 10: # فقط ۱۰ خبر اول را پردازش کن تا سریع باشد
+                break
+        
+        # ۲. برای هر لینک، برو داخل صفحه و متن را بگیر
+        for item in raw_links:
+            url = item['url']
+            logger.info(f"Processing: {item['title'][:50]}...")
+            
+            # استخراج متن کامل
+            summary = self.get_article_text(url)
+            
+            # تحلیل ساده سنجیمنت (احساس متن)
+            full_text = " ".join(summary).lower()
+            positive_words = ['موفق', 'پیشرفت', 'امید', 'خوب', 'بهبود', 'success', 'hope']
+            negative_words = ['جنگ', 'بحران', 'تنش', 'خشونت', 'تهدید', 'war', 'crisis', 'tension']
+            
+            pos = sum(1 for w in positive_words if w in full_text)
+            neg = sum(1 for w in negative_words if w in full_text)
+            total = pos + neg
+            
+            sentiment = round((pos - neg) / total, 2) if total > 0 else 0.0
+            
+            # تعیین فوریت
+            urgency = 5
+            high = ['فوری', 'خبر مهم', 'breaking', 'urgent', 'جنگ', 'حمله']
+            for w in high:
+                if w in full_text:
+                    urgency = 8
+                    break
+            
+            # تولید پیام تأثیر
+            impact = ""
+            if sentiment < -0.3 and urgency > 6:
+                impact = "این رویداد می‌تواند تأثیرات جدی بر وضعیت امنیتی و سیاسی منطقه داشته باشد."
+            elif sentiment < 0:
+                impact = "این خبر می‌تواند بر فضای عمومی و افکار عمومی تأثیرگذار باشد."
+            elif sentiment > 0.3:
+                impact = "این خبر می‌تواند تأثیر مثبتی بر فضای عمومی داشته باشد."
+            else:
+                impact = "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد."
+            
             article = {
-                "title_fa": title,
+                "title_fa": item['title'],
                 "title_en": "",
-                "summary": [],
-                "impact": "",
-                "tag": tag,
-                "urgency": 5,
-                "sentiment": 0.0,
+                "summary": summary,
+                "impact": impact,
+                "tag": item['tag'],
+                "urgency": urgency,
+                "sentiment": sentiment,
                 "source": "Iran International",
                 "url": url,
                 "clean_url": url,
-                "image": image,
+                "image": item['image'],
                 "timestamp": time.time()
             }
             articles.append(article)
             
-            if len(articles) >= 30:
-                break
+            # استراحت کوتاه بین درخواست‌ها
+            time.sleep(1)
         
-        # اگر از RSS توانستیم بگیریم بهتره
-        if not articles:
-            for rss_url in [f"{self.BASE_URL}/rss.xml", f"{self.BASE_URL}/fa/rss"]:
-                try:
-                    r = self.session.get(rss_url, timeout=10)
-                    if r.status_code == 200:
-                        rss_soup = BeautifulSoup(r.content, 'xml')
-                        for item in rss_soup.find_all('item')[:20]:
-                            title_el = item.find('title')
-                            link_el = item.find('link')
-                            desc_el = item.find('description')
-                            
-                            if link_el and link_el.get_text(strip=True):
-                                articles.append({
-                                    "title_fa": title_el.get_text(strip=True) if title_el else "",
-                                    "title_en": "",
-                                    "summary": [desc_el.get_text(strip=True)] if desc_el else [],
-                                    "impact": "",
-                                    "tag": "عمومی",
-                                    "urgency": 5,
-                                    "sentiment": 0.0,
-                                    "source": "Iran International",
-                                    "url": link_el.get_text(strip=True),
-                                    "clean_url": link_el.get_text(strip=True),
-                                    "image": None,
-                                    "timestamp": time.time()
-                                })
-                except:
-                    pass
-        
-        logger.info(f"Found {len(articles)} articles")
+        logger.info(f"Final count: {len(articles)} articles")
         return articles
-
 
 if __name__ == "__main__":
     scraper = Scraper()
