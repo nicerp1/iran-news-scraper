@@ -2,8 +2,10 @@
     {
         "title_fa": "وزیر جنگ آمریکا:‌ به هر تهدیدی از جمله از سوی قایق‌های کوچک ایران، پاسخ سنگین می‌دهیم",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "سفارت ایالات متحده در بغداد اعلام کرد گروه‌های شبه‌نظامی عراقی وابسته به جمهوری اسلامی در حال برنامه‌ریزی برای انجام حملات بیشتر علیه نیروها و اهداف مرتبط با آمریکا در سراسر عراق هستند."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
         "urgency": 5,
         "sentiment": 0.0,
@@ -11,27 +13,31 @@
         "url": "https://www.iranintl.com/fa/liveblog/iran-war-may5",
         "clean_url": "https://www.iranintl.com/fa/liveblog/iran-war-may5",
         "image": null,
-        "timestamp": 1777990076.8612578
+        "timestamp": 1777990391.715837
     },
     {
         "title_fa": "اقتصاد آتش‌بس",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "آتش‌بس برای دنیا یعنی نفت ارزان‌تر و جبران زیان بازارهای سهام. برای ایران یعنی لحظه‌ای که ۴۰ روز بحران منجمدشده، یک‌جا آزاد می‌شود: بورسی که بدون سنگین‌وزن‌هایش باز خواهد شد، دلاری که نرخ پیش از جنگش بی‌معناست، و تورمی که جنگ فقط صدایش را خفه کرده بود."
+        ],
+        "impact": "این رویداد می‌تواند تأثیرات جدی بر وضعیت امنیتی و سیاسی منطقه داشته باشد.",
         "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
+        "urgency": 8,
+        "sentiment": -1.0,
         "source": "Iran International",
         "url": "https://www.iranintl.com/fa/202604092723",
         "clean_url": "https://www.iranintl.com/fa/202604092723",
         "image": null,
-        "timestamp": 1777990076.8613489
+        "timestamp": 1777990393.886144
     },
     {
         "title_fa": "اقتصاد دلاریزه",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "اقتصاد ایران سال ۱۴۰۵ را در سرازیری دلاریزه شدن آغاز کرده است. مهار روند کنونی دیگر با اهرم‌های سیاستی و تمهیدات تکنیکال ممکن نیست و تغییرات اساسی داخلی و خارجی می‌طلبد. تحقق دلاریزه شدن، چهره اقتصاد ایران را دگرگون خواهد کرد."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
         "urgency": 5,
         "sentiment": 0.0,
@@ -39,13 +45,15 @@
         "url": "https://www.iranintl.com/fa/202603231644",
         "clean_url": "https://www.iranintl.com/fa/202603231644",
         "image": null,
-        "timestamp": 1777990076.861411
+        "timestamp": 1777990397.3989499
     },
     {
         "title_fa": "گرانی مواد خوراکی و شوینده‌ها؛ هزینه خرید سوپرمارکتی ۲.۵ برابر شده است",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "افزایش شدید قیمت کالاهای اساسی و مصرفی در ایران، به گفته شهروندان، فشار اقتصادی بی‌سابقه‌ای بر زندگی روزمره وارد کرده و توان خرید بسیاری از خانواده‌ها را به شدت کاهش داده است."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "روایت شما",
         "urgency": 5,
         "sentiment": 0.0,
@@ -53,27 +61,31 @@
         "url": "https://www.iranintl.com/202605054877",
         "clean_url": "https://www.iranintl.com/202605054877",
         "image": null,
-        "timestamp": 1777990076.861481
+        "timestamp": 1777990398.4797385
     },
     {
         "title_fa": "بحران بیکاری در ایران؛ از اخراج تا بازار کساد مشاغل وابسته به اینترنت",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "بحران اقتصادی در ایران بیش از پیش شدت گرفته است. پیام‌های رسیده به ایران‌اینترنشنال حاکی از موج گسترده بیکاری، تعطیلی کسب و کارهای وابسته به اینترنت، تعدیل و اخراج نیروها و همچنین تعویق در پرداخت حقوق و مزایای کارکنان بخش‌های مختلف است."
+        ],
+        "impact": "این خبر می‌تواند بر فضای عمومی و افکار عمومی تأثیرگذار باشد.",
         "tag": "روایت شما",
         "urgency": 5,
-        "sentiment": 0.0,
+        "sentiment": -1.0,
         "source": "Iran International",
         "url": "https://www.iranintl.com/202605055422",
         "clean_url": "https://www.iranintl.com/202605055422",
         "image": null,
-        "timestamp": 1777990076.8615465
+        "timestamp": 1777990400.0743423
     },
     {
         "title_fa": "تردید در تداوم آتش‌بس خاورمیانه با ادامه تقابل واشینگتن و تهران بر سر کنترل تنگه هرمز",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "آتش‌بس شکننده در خاورمیانه زیر فشار تازه قرار گرفته است. آمریکا و جمهوری اسلامی در خلیج فارس درگیر تبادل آتش شده‌اند و رقابت برای کنترل تنگه هرمز شدت گرفته است. هم‌زمان، گزارش‌هایی از آتش‌سوزی‌ها و اختلال در کشتیرانی منتشر شده و تلاش‌های دیپلماتیک نیز به بن‌بست خورده است."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
         "urgency": 5,
         "sentiment": 0.0,
@@ -81,27 +93,31 @@
         "url": "https://www.iranintl.com/2026050524130",
         "clean_url": "https://www.iranintl.com/2026050524130",
         "image": null,
-        "timestamp": 1777990076.8616133
+        "timestamp": 1777990401.185969
     },
     {
         "title_fa": "شورای سردبیری وال‌استریت ژورنال: تهران به آتش‌بس پایان داد، ترامپ باید به زور متوسل شود",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "شورای سردبیری روزنامه وال‌استریت ژورنال، در یادداشتی با اشاره به حمله روز دوشنبه ۱۴ اردیبهشت جمهوری اسلامی به امارات متحده عربی نوشت تهران آتش‌بس را نقض کرده و دونالد ترامپ، رییس‌جمهوری آمریکا، باید به این اقدام پاسخ دهد و با توسل به زور تنگه هرمز را باز کند."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "تحلیل",
-        "urgency": 5,
+        "urgency": 8,
         "sentiment": 0.0,
         "source": "Iran International",
         "url": "https://www.iranintl.com/202605050529",
         "clean_url": "https://www.iranintl.com/202605050529",
         "image": null,
-        "timestamp": 1777990076.8616788
+        "timestamp": 1777990402.2829702
     },
     {
         "title_fa": "رویترز: ارزیابی‌های اطلاعاتی آمریکا از آسیب محدود جدید به برنامه هسته‌ای ایران حکایت دارد",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "خبرگزاری رویترز به‌نقل از سه منبع آگاه گزارش داد که ارزیابی‌های اطلاعاتی ایالات متحده نشان می‌دهد مدت زمانی که جمهوری اسلامی برای ساخت یک سلاح هسته‌ای نیاز دارد، از تابستان گذشته تغییری نکرده است."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
         "urgency": 5,
         "sentiment": 0.0,
@@ -109,13 +125,15 @@
         "url": "https://www.iranintl.com/202605044012",
         "clean_url": "https://www.iranintl.com/202605044012",
         "image": null,
-        "timestamp": 1777990076.8617477
+        "timestamp": 1777990403.854075
     },
     {
         "title_fa": "ترامپ: اگر رژیم ایران کشتی‌های آمریکا را هدف بگیرد، از صفحه روزگار محو می‌شود",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "دونالد ترامپ، رییس‌جمهوری ایالات متحده، در گفت‌وگویی تلفنی با فاکس‌نیوز به حکومت ایران هشدار داد در صورت هدف قرار دادن کشتی‌های آمریکایی در منطقه، «از روی زمین محو خواهند شد.»"
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
         "urgency": 5,
         "sentiment": 0.0,
@@ -123,300 +141,22 @@
         "url": "https://www.iranintl.com/202605049658",
         "clean_url": "https://www.iranintl.com/202605049658",
         "image": null,
-        "timestamp": 1777990076.8618155
+        "timestamp": 1777990405.515198
     },
     {
         "title_fa": "جمهوری اسلامی امارات را هدف گرفت",
         "title_en": "",
-        "summary": [],
-        "impact": "",
+        "summary": [
+            "ساعاتی پس از آغاز «پروژه آزادی» برای هدایت امن کشتی‌های گرفتار در تنگه هرمز، سامانه‌های پدافند هوایی امارات فعال شدند و وزارت دفاع این کشور از رهگیری سه موشک کروز شلیک‌شده از ایران خبر داد. مقام‌های فجیره نیز از آتش‌سوزی در منطقه صنایع نفتی این امارت در پی حمله پهپادی خبر دادند."
+        ],
+        "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
-        "urgency": 5,
+        "urgency": 8,
         "sentiment": 0.0,
         "source": "Iran International",
         "url": "https://www.iranintl.com/202605048401",
         "clean_url": "https://www.iranintl.com/202605048401",
         "image": null,
-        "timestamp": 1777990076.8618824
-    },
-    {
-        "title_fa": "حقوق بشر",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/human-rights",
-        "clean_url": "https://www.iranintl.com/human-rights",
-        "image": null,
-        "timestamp": 1777990076.8619382
-    },
-    {
-        "title_fa": "حق تعیین سرنوشت",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202603160299",
-        "clean_url": "https://www.iranintl.com/202603160299",
-        "image": null,
-        "timestamp": 1777990076.861991
-    },
-    {
-        "title_fa": "خطر هزاران اعدام",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202604023553",
-        "clean_url": "https://www.iranintl.com/202604023553",
-        "image": null,
-        "timestamp": 1777990076.8620424
-    },
-    {
-        "title_fa": "سقوط آزادی مطبوعات در جهان",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202604290561",
-        "clean_url": "https://www.iranintl.com/202604290561",
-        "image": null,
-        "timestamp": 1777990076.8620954
-    },
-    {
-        "title_fa": "کارخانه شهیدسازی جمهوری اسلامی؛ ابزارسازی از کودکان برای مشروعیت",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "تحلیل",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605055598",
-        "clean_url": "https://www.iranintl.com/202605055598",
-        "image": null,
-        "timestamp": 1777990076.8621533
-    },
-    {
-        "title_fa": "زوج بریتانیایی زندانی در اوین به دلیل مصاحبه با بی‌بی‌سی سه هفته از ملاقات محروم شدند",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "اختصاصی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605045511",
-        "clean_url": "https://www.iranintl.com/202605045511",
-        "image": null,
-        "timestamp": 1777990076.8622072
-    },
-    {
-        "title_fa": "کوروش کیوانی، زندانی ایرانی-سوئدی اعدام شده را در بیابان‌های خاوران دفن کردند",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "اختصاصی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605047822",
-        "clean_url": "https://www.iranintl.com/202605047822",
-        "image": null,
-        "timestamp": 1777990076.862274
-    },
-    {
-        "title_fa": "جمهوری اسلامی، سه زندانی مرتبط با اعتراضات دی ماه را در مشهد اعدام کرد",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605047839",
-        "clean_url": "https://www.iranintl.com/202605047839",
-        "image": null,
-        "timestamp": 1777990076.8623292
-    },
-    {
-        "title_fa": "سوئد در پی تشکیل یک سازمان جدید اطلاعات خارجی است",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/2026050522300",
-        "clean_url": "https://www.iranintl.com/2026050522300",
-        "image": null,
-        "timestamp": 1777990076.862398
-    },
-    {
-        "title_fa": "نشست جامعه سیاسی اروپا زیر سایه نگرانی درباره آینده ناتو و ارتباط با آمریکا برگزار شد",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605047151",
-        "clean_url": "https://www.iranintl.com/202605047151",
-        "image": null,
-        "timestamp": 1777990076.86246
-    },
-    {
-        "title_fa": "خشم پزشکیان از «جنون» سپاه؛ درخواست ملاقات با مجتبی خامنه‌‌ای برای توقف حملات به همسایگان",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "اختصاصی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605047988",
-        "clean_url": "https://www.iranintl.com/202605047988",
-        "image": null,
-        "timestamp": 1777990076.8625247
-    },
-    {
-        "title_fa": "پایان محور ابراهیم؛ اختلاف نگاه کشورهای عرب خلیج فارس و اسرائیل به آینده خاورمیانه",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "تحلیل",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605059138",
-        "clean_url": "https://www.iranintl.com/202605059138",
-        "image": null,
-        "timestamp": 1777990076.8625848
-    },
-    {
-        "title_fa": "هاآرتص: میان تناقض‌های ترامپ و شکاف‌های داخلی ایران، اولویت‌ها در حال بازتعریف است",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "تحلیل",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605047691",
-        "clean_url": "https://www.iranintl.com/202605047691",
-        "image": null,
-        "timestamp": 1777990076.8626454
-    },
-    {
-        "title_fa": "بولتون موفقیت را «برکناری حکومت در تهران» دانست: آمریکا هنوز کار را تمام نکرده است",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605037644",
-        "clean_url": "https://www.iranintl.com/202605037644",
-        "image": null,
-        "timestamp": 1777990076.8627067
-    },
-    {
-        "title_fa": "ترامپ پیشنهاد ۱۴ ماده‌ای را رد کرد؛ تهران: پاسخ آمریکا در دست بررسی است",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605030946",
-        "clean_url": "https://www.iranintl.com/202605030946",
-        "image": null,
-        "timestamp": 1777990076.862772
-    },
-    {
-        "title_fa": "سنتکام از تغییر مسیر ۴۹ کشتی و تانکرترکرز از خروج ۲۵ نفتکش از آب‌های سرزمینی ایران خبر داد",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605035246",
-        "clean_url": "https://www.iranintl.com/202605035246",
-        "image": null,
-        "timestamp": 1777990076.862835
-    },
-    {
-        "title_fa": "رویترز: حزب‌الله بهای سنگینی برای تغییر موازنه در برابر اسرائیل پرداخته است",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/2026050488060",
-        "clean_url": "https://www.iranintl.com/2026050488060",
-        "image": null,
-        "timestamp": 1777990076.8628874
-    },
-    {
-        "title_fa": "کشف مهدکودک «غیرمجاز» تحت مدیریت ایرانیان در تایلند؛ ۸۹ اسرائیلی در میان کودکان",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605028458",
-        "clean_url": "https://www.iranintl.com/202605028458",
-        "image": null,
-        "timestamp": 1777990076.8629403
-    },
-    {
-        "title_fa": "در پاسخ به «هیات صلح»، حماس با واگذاری سلاح مخالفت و شرط تشکیل دولت فلسطینی را مطرح کرد",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605020333",
-        "clean_url": "https://www.iranintl.com/202605020333",
-        "image": null,
-        "timestamp": 1777990076.8629935
-    },
-    {
-        "title_fa": "حزب‌الله و بازگشت به «عملیات استشهادی»؛ عقب‌گرد راهبردی یا جنگ روانی؟",
-        "title_en": "",
-        "summary": [],
-        "impact": "",
-        "tag": "عمومی",
-        "urgency": 5,
-        "sentiment": 0.0,
-        "source": "Iran International",
-        "url": "https://www.iranintl.com/202605017737",
-        "clean_url": "https://www.iranintl.com/202605017737",
-        "image": null,
-        "timestamp": 1777990076.8630455
+        "timestamp": 1777990406.6674986
     }
 ]
