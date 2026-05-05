@@ -1,32 +1,41 @@
-name: Scrape News
+name: News Scraper
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
+    # هر ساعت در دقیقه ۰ اجرا می‌شود (مثلاً ۱۰:۰۰، ۱۱:۰۰ و ...)
+    - cron: '0 * * * *'
+  workflow_dispatch: # برای اجرای دستی
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          python-version: '3.11'
+          token: ${{ secrets.GH_TOKEN }}
 
-      - name: Install deps
-        run: pip install -r requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run scraper
-        run: python iran_news_scraper.py
-
-      - name: Commit if changed
         run: |
-          git config user.name "github-actions-bot"
-          git config user.email "actions@github.com"
-          git add news.json
-          git commit -m "Auto update news [$(date +'%Y-%m-%d %H:%M')]" || true
+          python main.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update news data" -a
+          
           git push
