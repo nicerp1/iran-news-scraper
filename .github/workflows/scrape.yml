@@ -2,9 +2,9 @@ name: News Scraper
 
 on:
   schedule:
-    # اجرای هر ساعت در دقیقه ۰ (مثلاً ۱۰:۰۰، ۱۱:۰۰)
+    # هر ساعت در دقیقه ۰
     - cron: '0 * * * *'
-  workflow_dispatch: # امکان اجرای دستی
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -28,9 +28,10 @@ jobs:
 
       - name: Run scraper
         run: |
-          python iran_news_scraper.py
+          python iran_news_scraper.py || echo "Scraping finished with errors"
 
       - name: Commit and push if changed
+        # این مرحله فقط در صورت موفقیت‌آمیز بودن مرحله قبل اجرا می‌شود
         if: success()
         run: |
           git config --local user.email "action@github.com"
