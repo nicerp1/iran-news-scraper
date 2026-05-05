@@ -1,9 +1,11 @@
 [
     {
-        "title_fa": "وزیر جنگ آمریکا:‌ به هر تهدیدی از جمله از سوی قایق‌های کوچک ایران، پاسخ سنگین می‌دهیم",
+        "title_fa": "امارات متحده عربی از حملات موشکی و پهپادی از سوی ایران خبر داد",
         "title_en": "",
         "summary": [
-            "اشپیگل به نقل از وزارت دفاع آلمان اعلام کرد آلمان یک کشتی مین‌روب از نیروی دریایی خود را به مدیترانه اعزام کرده است تا در صورت نیاز، در عملیات احتمالی پاک‌سازی تنگه هرمز مشارکت کند."
+            "وزارت دفاع امارات متحده عربی روز سه‌شنبه اعلام کرد که سامانه‌های پدافند هوایی این کشور در حال مقابله با حملات موشکی و پهپادی هستند که از سوی ایران انجام می‌شود.",
+            "این دومین روز از حملات پس از یک دوره چهار هفته‌ای آرامش نسبی است که از زمان اعلام آتش‌بس توسط ایالات متحده آغاز شده بود.",
+            "وزارت دفاع امارات متحده عربی افزود که صداهای شنیده‌شده در سراسر کشور ناشی از عملیات سامانه‌های پدافندی امارات برای مقابله با موشک‌های بالستیک، کروز و پهپادها است."
         ],
         "impact": "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد.",
         "tag": "عمومی",
@@ -12,9 +14,9 @@
         "source": "Iran International",
         "url": "https://www.iranintl.com/fa/liveblog/iran-war-may5",
         "clean_url": "https://www.iranintl.com/fa/liveblog/iran-war-may5",
-        "image": "https://i.iranintl.com/images/rdk9umy0/production/73c49cd16f7e6f6781bf411e64ff3921383a6def-7056x4704.jpg?rect=0,509,7056,3687&w=1200&h=627&fit=max&auto=format",
-        "timestamp": 1777990767.6624951,
-        "date_raw": "2026-05-05T14:14:54.787Z"
+        "image": "https://i.iranintl.com/images/rdk9umy0/production/5a04adc18c1cef990a9290edbc1a2d0ebc634f61-5938x3959.jpg?rect=1185,485,3455,1805&w=1200&h=627&fit=max&auto=format",
+        "timestamp": 1777991728.4500554,
+        "date_raw": "2026-05-05T14:21:39.669Z"
     },
     {
         "title_fa": "اقتصاد آتش‌بس",
@@ -30,7 +32,7 @@
         "url": "https://www.iranintl.com/fa/202604092723",
         "clean_url": "https://www.iranintl.com/fa/202604092723",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/47e4f71c1aef393cdc2ba3fb1a694778b7db55ab-1199x674.jpg?rect=0,23,1199,629&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990769.7043827,
+        "timestamp": 1777991730.3675618,
         "date_raw": "2026-04-10T15:45:11.145Z"
     },
     {
@@ -47,7 +49,7 @@
         "url": "https://www.iranintl.com/fa/202603231644",
         "clean_url": "https://www.iranintl.com/fa/202603231644",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/47e4f71c1aef393cdc2ba3fb1a694778b7db55ab-1199x674.jpg?rect=0,23,1199,629&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990771.8201935,
+        "timestamp": 1777991732.531697,
         "date_raw": "2026-03-23T20:39:29.832Z"
     },
     {
@@ -64,7 +66,7 @@
         "url": "https://www.iranintl.com/202605054877",
         "clean_url": "https://www.iranintl.com/202605054877",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/912265d99f4f9db02ba58b0bf89682346e429595-1532x1027.png?rect=0,112,1532,804&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990772.9223633,
+        "timestamp": 1777991734.450503,
         "date_raw": "2026-05-05T12:48:07.534Z"
     },
     {
@@ -81,7 +83,7 @@
         "url": "https://www.iranintl.com/202605055422",
         "clean_url": "https://www.iranintl.com/202605055422",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/1daaa0c605b565da8dcee712e823252cd08a3b3d-1495x1052.png?rect=0,191,1495,785&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990774.6573584,
+        "timestamp": 1777991736.2332172,
         "date_raw": "2026-05-05T08:19:38.277Z"
     },
     {
@@ -98,7 +100,7 @@
         "url": "https://www.iranintl.com/2026050524130",
         "clean_url": "https://www.iranintl.com/2026050524130",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/e94253ff6c28f7c2922c7948e229a62ba99a0a7e-800x533.jpg?rect=0,57,800,420&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990776.1733491,
+        "timestamp": 1777991738.3447752,
         "date_raw": "2026-05-05T12:12:34.678Z"
     },
     {
@@ -115,7 +117,7 @@
         "url": "https://www.iranintl.com/202605050529",
         "clean_url": "https://www.iranintl.com/202605050529",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/3548178c967441e4f7afab3b5ff3533837b2adeb-800x533.jpg?rect=0,57,800,420&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990777.6844823,
+        "timestamp": 1777991740.4600143,
         "date_raw": "2026-05-05T01:40:42.210Z"
     },
     {
@@ -132,7 +134,7 @@
         "url": "https://www.iranintl.com/202605044012",
         "clean_url": "https://www.iranintl.com/202605044012",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/5eaf453a637bc145ef5dab42b73ddb941db68fe4-1000x667.jpg?rect=0,72,1000,525&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990779.4045813,
+        "timestamp": 1777991742.6946967,
         "date_raw": "2026-05-04T22:11:13.239Z"
     },
     {
@@ -149,7 +151,7 @@
         "url": "https://www.iranintl.com/202605049658",
         "clean_url": "https://www.iranintl.com/202605049658",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/cd9d5bfa0fac215692d9d887602827882c14b00e-3004x2003.jpg?rect=0,214,3004,1577&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990781.0718412,
+        "timestamp": 1777991744.6875849,
         "date_raw": "2026-05-04T19:02:44.522Z"
     },
     {
@@ -166,7 +168,7 @@
         "url": "https://www.iranintl.com/202605048401",
         "clean_url": "https://www.iranintl.com/202605048401",
         "image": "https://i.iranintl.com/images/rdk9umy0/production/5f9476b4fbf588bc61f898c59e772844b161ab1e-4973x3430.jpg?rect=0,410,4973,2611&w=1200&h=630&fit=max&auto=format",
-        "timestamp": 1777990782.6219974,
+        "timestamp": 1777991747.0232735,
         "date_raw": "2026-05-04T15:48:45.213Z"
     }
 ]
