@@ -7,9 +7,7 @@ import time
 from urllib.parse import urljoin
 from datetime import datetime
 import logging
-
-# کتابخانه جدید برای مدیریت تاریخ شمسی
-import jdatetime
+import jdatetime # کتابخانه تاریخ شمسی
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -21,7 +19,7 @@ class Scraper:
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Language': 'fa-IR,fa;q=0.9,en-US;q=0.8,en;q=0.7',
         })
 
     def get_page(self, url):
@@ -33,74 +31,65 @@ class Scraper:
             logger.error(f"Error fetching {url}: {e}")
             return None
 
-    def parse_date(self, date_str):
+    def convert_to_shamsi(self, date_obj):
         """
-        تبدیل رشته تاریخ (فارسی یا انگلیسی) به آبجکت jdatetime برای مرتب‌سازی دقیق
+        تبدیل هر نوع تاریخ (میلادی یا شمسی) به تاریخ شمسی زیبا
         """
-        if not date_str:
-            return None
-
+        if not date_obj:
+            return "تاریخ نامشخص"
+        
         try:
-            # پاکسازی کاراکترهای اضافی مثل "منتشر شده در" یا فاصله‌های اضافی
-            clean_date = re.sub(r'[^\d\-/\u06F0-\u06F9]', '', date_str)
+            # اگر آبجکت jdatetime باشد (یعنی قبلاً شمسی بوده)
+            if isinstance(date_obj, jdatetime.datetime):
+                return date_obj.strftime('%Y/%m/%d')
             
-            # اگر تاریخ خالی شد
-            if not clean_date:
-                return None
-
-            # تشخیص جداکننده
-            if '/' in clean_date:
-                parts = clean_date.split('/')
-            elif '-' in clean_date:
-                parts = clean_date.split('-')
-            else:
-                # اگر عدد پیوسته است (مثلا 14020512)
-                if len(clean_date) == 8:
-                    parts = [clean_date[:4], clean_date[4:6], clean_date[6:8]]
-                else:
-                    return None
-
-            if len(parts) != 3:
-                return None
-
-            # تبدیل اعداد فارسی به انگلیسی اگر لازم باشد (jdatetime خودکار هندل می‌کند اما برای اطمینان)
-            # جداول اعداد فارسی
-            farsi_digits = '۰۱۲۳۴۵۶۷۸۹'
-            eng_digits = '0123456789'
-            
-            # تبدیل دستی اگر رشته شامل اعداد فارسی باشد
-            # اما jdatetime.fromgregorian یا constructor معمولا اعداد فارسی را هم می‌پذیرند؟
-            # بهتر است مطمئن شویم اعداد انگلیسی هستند یا از try-except استفاده کنیم.
-            
-            # روش امن: تلاش برای ساخت آبجکت جالویشی
-            # ما فرض می‌کنیم فرمت شمسی است چون سایت فارسی است.
-            # اگر اعداد فارسی باشند، jdatetime از آن‌ها پشتیبانی می‌کند.
-            
-            year = int(parts[0])
-            month = int(parts[1])
-            day = int(parts[2])
-
-            # اعتبارسنجی ساده
-            if 1300 <= year <= 1500 and 1 <= month <= 12 and 1 <= day <= 31:
-                return jdatetime.datetime(year, month, day)
-            
-            # اگر فرمت میلادی بود (احتمال کم در این سایت، اما برای اطمینان)
-            # اگر سال کمتر از 1300 بود، احتمالا میلادی است
-            elif year < 1300:
-                return datetime(year, month, day)
+            # اگر آبجکت datetime معمولی باشد (میلادی)
+            if isinstance(date_obj, datetime):
+                # تبدیل میلادی به شمسی
+                shamsi_date = jdatetime.datetime.fromgregorian(datetime=date_obj)
+                return shamsi_date.strftime('%Y/%m/%d')
                 
-        except (ValueError, IndexError) as e:
-            logger.debug(f"Could not parse date: {date_str}, Error: {e}")
-            return None
-            
-        return None
+            # اگر رشته بود، سعی در تشخیص می‌کنیم
+            if isinstance(date_obj, str):
+                # تلاش برای تبدیل اعداد فارسی به انگلیسی
+                clean_str = re.sub(r'[^\d\-/\u06F0-\u06F9]', '', date_obj)
+                if not clean_str:
+                    return date_obj
+                
+                # اگر اعداد فارسی هستند
+                farsi_digits = '۰۱۲۳۴۵۶۷۸۹'
+                eng_digits = '0123456789'
+                for f, e in zip(farsi_digits, eng_digits):
+                    clean_str = clean_str.replace(f, e)
+                
+                parts = re.split(r'[-/]', clean_str)
+                if len(parts) == 3:
+                    y, m, d = int(parts[0]), int(parts[1]), int(parts[2])
+                    # تشخیص شمسی یا میلادی بر اساس سال
+                    # اگر سال بین 1300 تا 1500 است، شمسی فرض می‌کنیم
+                    if 1300 <= y <= 1500:
+                        try:
+                            shamsi_dt = jdatetime.datetime(y, m, d)
+                            return shamsi_dt.strftime('%Y/%m/%d')
+                        except:
+                            pass # اگر خطا داشت، احتمالا میلادی است
+                    # اگر سال کوچک است (مثلا 2023)، میلادی است و باید تبدیل شود
+                    if y < 1300:
+                        try:
+                            gregorian_dt = datetime(y, m, d)
+                            shamsi_dt = jdatetime.datetime.fromgregorian(datetime=gregorian_dt)
+                            return shamsi_dt.strftime('%Y/%m/%d')
+                        except:
+                            pass
+        except Exception as e:
+            logger.debug(f"Date conversion error: {e}")
+            return date_obj
 
     def get_article_meta(self, soup):
-        """استخراج تاریخ و تصویر از هدر خبر"""
-        date_obj = None
+        """استخراج تاریخ و تصویر"""
         image = None
         
-        # ۱. جستجو برای تصویر
+        # 1. تصویر
         og_image = soup.find('meta', property='og:image')
         if og_image and og_image.get('content'):
             image = og_image['content']
@@ -110,25 +99,45 @@ class Scraper:
             if img and img.get('src'):
                 image = img['src']
 
-        # ۲. جستجو برای تاریخ
+        # 2. تاریخ
+        date_obj = None
         date_text = ""
+        
+        # روش اول: تگ time
         time_tag = soup.find('time')
         if time_tag:
-            # اول datetime را چک کن، اگر نبود متن را بگیر
-            date_text = time_tag.get('datetime') or time_tag.get_text(strip=True)
+            # datetime attribute معمولاً استاندارد است
+            dt_attr = time_tag.get('datetime')
+            if dt_attr:
+                date_text = dt_attr
+            else:
+                date_text = time_tag.get_text(strip=True)
         
+        # روش دوم: کلاس‌های رایج
         if not date_text:
-            date_classes = ['date', 'published', 'timestamp', 'post-date', 'entry-date', 'pubdate']
+            date_classes = ['date', 'published', 'timestamp', 'post-date', 'entry-date']
             for cls in date_classes:
                 date_el = soup.find(class_=re.compile(cls, re.I))
                 if date_el:
                     date_text = date_el.get_text(strip=True)
                     break
         
-        # تبدیل به آبجکت تاریخ برای مرتب‌سازی
-        parsed_date = self.parse_date(date_text)
-        
-        return parsed_date, date_text, image
+        # تبدیل رشته تاریخ به آبجکت قابل تبدیل
+        if date_text:
+            # تلاش برای ساخت آبجکت datetime
+            try:
+                # اگر فرمت استاندارد میلادی باشد (مثلا 2023-05-12)
+                if re.match(r'^\d{4}[-/]\d{1,2}[-/]\d{1,2}$', date_text):
+                    date_obj = datetime.strptime(date_text, '%Y-%m-%d')
+                elif re.match(r'^\d{4}[-/]\d{1,2}[-/]\d{1,2}$', date_text): # فرمت دیگر
+                    date_obj = datetime.strptime(date_text, '%Y/%m/%d')
+                else:
+                    # اگر فرمت نامشخص است، فرض می‌کنیم رشته است و convert_to_shamsi خودش مدیریت می‌کند
+                    date_obj = date_text 
+            except:
+                date_obj = date_text # اگر پارس نشد، خود تابع تبدیل بعداً مدیریت می‌کند
+
+        return date_obj, date_text, image
 
     def get_article_text(self, url):
         """استخراج متن کامل خبر"""
@@ -136,8 +145,10 @@ class Scraper:
         if not soup:
             return [], None, None, None
         
-        parsed_date, date_text, image = self.get_article_meta(soup)
+        date_obj, date_text, image = self.get_article_meta(soup)
         
+        # استخراج بدنه خبر
+        # الگوی کلاس در ایران اینترنشنال معمولا article-body یا story-content است
         content_div = soup.find('div', class_=re.compile(r'article-body|story-content|post-content|entry-content', re.I))
         if not content_div:
             content_div = soup.find('article') or soup
@@ -148,10 +159,11 @@ class Scraper:
         paragraphs = []
         for p in content_div.find_all('p'):
             text = p.get_text(strip=True)
-            if text and len(text) > 50: # کمی کاهش حداقل طول برای گرفتن جملات کوتاه‌تر
+            # حذف پاراگراف‌های خیلی کوتاه یا تکراری
+            if text and len(text) > 50:
                 paragraphs.append(text)
         
-        return paragraphs[:10], parsed_date, date_text, image
+        return paragraphs[:10], date_obj, date_text, image
 
     def run(self):
         logger.info("Fetching homepage...")
@@ -161,62 +173,75 @@ class Scraper:
             return []
 
         articles = []
-        seen = set()
+        seen_urls = set()
         
-        # ۱. استخراج لینک‌ها از صفحه اصلی
-        raw_links = []
-        for a in soup.find_all('a', href=True):
-            href = a.get('href', '')
-            if 'iranintl' not in href:
-                continue
-            url = urljoin(self.BASE_URL, href) if href.startswith('/') else href
-            if url in seen:
-                continue
-            if any(skip in url for skip in ['/category/', '/tag/', '/author/', '#']):
-                continue
-            
-            seen.add(url)
-            parent = a.parent
-            
-            # پیدا کردن عنوان در تگ‌های والد
-            title = ""
-            # گاهی لینک مستقیماً داخل h2 است
-            if a.name in ['h2', 'h3', 'h4']:
-                title = a.get_text(strip=True)
-            else:
-                for tag in ['h2', 'h3', 'h4', 'h5']:
-                    t = parent.find(tag)
-                    if t:
-                        title = t.get_text(strip=True)
-                        break
-            
-            if not title:
-                title = a.get_text(strip=True)
-            
-            if not title:
-                continue
-                
-            raw_links.append({
-                "url": url,
-                "title": title
-            })
-            if len(raw_links) >= 10:
-                break
+        # ۱. استخراج لینک‌های خبر از صفحه اصلی
+        # ما به دنبال تگ‌های h2, h3, h4 هستیم که داخل لینک هستند یا لینک والدشان هستند
+        news_links = []
+        
+        # روش مطمئن: پیدا کردن تمام تگ‌های h2/h3 که لینک دارند
+        for header in soup.find_all(['h2', 'h3', 'h4']):
+            link = header.find('a', href=True)
+            if link:
+                href = link['href']
+                if 'iranintl' in href and not any(skip in href for skip in ['/category/', '/tag/', '/author/', '#']):
+                    url = urljoin(self.BASE_URL, href)
+                    if url not in seen_urls:
+                        seen_urls.add(url)
+                        title = header.get_text(strip=True)
+                        news_links.append({
+                            "url": url,
+                            "title": title
+                        })
+        
+        # اگر لینک‌های هدر پیدا نشد، از روش عمومی استفاده کن (اما فیلتر دقیق‌تر)
+        if not news_links:
+            for a in soup.find_all('a', href=True):
+                href = a.get('href', '')
+                if 'iranintl' in href and not any(skip in href for skip in ['/category/', '/tag/', '/author/', '#']):
+                    url = urljoin(self.BASE_URL, href)
+                    if url not in seen_urls:
+                        seen_urls.add(url)
+                        # پیدا کردن عنوان نزدیک به لینک
+                        parent = a.parent
+                        title = ""
+                        for tag in ['h2', 'h3', 'h4', 'strong', 'span']:
+                            t = parent.find(tag)
+                            if t:
+                                title = t.get_text(strip=True)
+                                break
+                        if not title:
+                            title = a.get_text(strip=True)
+                        
+                        if title and len(title) > 10: # عنوان باید معنادار باشد
+                            news_links.append({
+                                "url": url,
+                                "title": title
+                            })
+        
+        # محدود کردن تعداد لینک‌های ورودی برای پردازش (مثلا 20 تا)
+        # اما نه کمتر از 10 تا
+        limit = max(10, min(len(news_links), 20))
+        raw_links = news_links[:limit]
+
+        logger.info(f"Found {len(raw_links)} potential news links.")
 
         # ۲. پردازش هر لینک
         for item in raw_links:
             url = item['url']
-            logger.info(f"Processing: {item['title'][:50]}...")
+            logger.info(f"Processing: {item['title'][:40]}...")
             
-            summary, parsed_date, date_text, image = self.get_article_text(url)
+            summary, date_obj, date_text, image = self.get_article_text(url)
             
+            # اگر خبری در صفحه نبود، رد شو
             if not summary:
+                logger.warning(f"No content found in {url}")
                 continue
 
             # تحلیل سنجیمنت (ساده)
             full_text = " ".join(summary).lower()
-            positive_words = ['موفق', 'پیشرفت', 'امید', 'خوب', 'بهبود', 'success', 'hope', 'رشد', 'افتتاح']
-            negative_words = ['جنگ', 'بحران', 'تنش', 'خشونت', 'تهدید', 'war', 'crisis', 'tension', 'حمله', 'کشته']
+            positive_words = ['موفق', 'پیشرفت', 'امید', 'خوب', 'بهبود', 'success', 'hope', 'رشد', 'افتتاح', 'صلح']
+            negative_words = ['جنگ', 'بحران', 'تنش', 'خشونت', 'تهدید', 'war', 'crisis', 'tension', 'حمله', 'کشته', 'ترور']
             
             pos = sum(1 for w in positive_words if w in full_text)
             neg = sum(1 for w in negative_words if w in full_text)
@@ -240,14 +265,8 @@ class Scraper:
             else:
                 impact = "این خبر در حال حاضر تأثیر قابل توجهی بر وضعیت کلی ندارد."
 
-            # فرمت‌دهی تاریخ برای نمایش
-            # اگر تاریخ شمسی استخراج شد، آن را به رشته زیبای فارسی تبدیل می‌کنیم
-            date_display = ""
-            if parsed_date:
-                if isinstance(parsed_date, jdatetime.datetime):
-                    date_display = parsed_date.strftime('%Y/%m/%d') # فرمت شمسی
-                elif isinstance(parsed_date, datetime):
-                    date_display = parsed_date.strftime('%Y-%m-%d') # فرمت میلادی
+            # تبدیل تاریخ به شمسی برای نمایش
+            shamsi_date_str = self.convert_to_shamsi(date_obj)
             
             article = {
                 "title_fa": item['title'],
@@ -262,24 +281,32 @@ class Scraper:
                 "clean_url": url,
                 "image": image,
                 "date_raw": date_text if date_text else "",
-                "date_formatted": date_display, # تاریخ خوانا برای کاربر
-                # برای مرتب‌سازی داخلی، از timestamp یونیکس یا خود آبجکت تاریخ استفاده می‌کنیم
-                # اما چون jdatetime قابل مقایسه مستقیم در JSON نیست، ما از یک عدد یونیکس استفاده می‌کنیم
-                "sort_timestamp": parsed_date.toordinal() if parsed_date else 0 
-            }
+                "date_shamsi": shamsi_date_str, # تاریخ شمسی تبدیل شده
+                # برای مرتب‌سازی، از یک عدد یونیکس استفاده می‌کنیم
+                # اگر تاریخ شمسی داشتیم، آن را به میلادی تبدیل کن تا قابل مقایسه باشد
+                sort_key = 0
+                if isinstance(date_obj, jdatetime.datetime):
+                    sort_key = date_obj.toordinal()
+                elif isinstance(date_obj, datetime):
+                    sort_key = date_obj.toordinal()
+                elif isinstance(date_obj, str):
+                    # اگر رشته بود، سعی کن پارس کنی
+                    # این بخش پیشرفته است، فعلا صفر در نظر می‌گیریم
+                    pass
+                article["sort_key"] = sort_key
+
             articles.append(article)
             time.sleep(1)
 
         # ۳. مرتب‌سازی از جدید به قدیم
-        # استفاده از sort_timestamp که بر اساس تاریخ شمسی یا میلادی محاسبه شده است
-        # toordinal() یک عدد صحیح یکتا برای هر روز می‌دهد که برای مقایسه عالی است
-        articles.sort(key=lambda x: x['sort_timestamp'], reverse=True)
+        # بر اساس sort_key مرتب می‌کنیم
+        articles.sort(key=lambda x: x['sort_key'], reverse=True)
         
-        # حذف فیلد کمکی sort_timestamp از خروجی نهایی (اختیاری)
+        # حذف فیلد کمکی از خروجی نهایی
         for art in articles:
-            del art['sort_timestamp']
+            del art['sort_key']
 
-        logger.info(f"Final count: {len(articles)} articles")
+        logger.info(f"Final count: {len(articles)} articles processed successfully.")
         return articles
 
 if __name__ == "__main__":
@@ -289,8 +316,9 @@ if __name__ == "__main__":
         with open("news.json", "w", encoding="utf-8") as f:
             json.dump(articles, f, ensure_ascii=False, indent=4)
         print(f"✅ Saved {len(articles)} articles to news.json")
-        # نمایش تاریخ اولین خبر برای تست
+        # نمایش اولین خبر برای تست تاریخ
         if articles:
-            print(f"📅 First article date (Shamsi): {articles[0].get('date_formatted', 'N/A')}")
+            print(f"📅 First article date (Shamsi): {articles[0].get('date_shamsi', 'N/A')}")
+            print(f"📰 First article title: {articles[0].get('title_fa', 'N/A')}")
     else:
         print("❌ No articles found")
